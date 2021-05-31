@@ -1,0 +1,2561 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/29/2021 1:50:14 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="LAPTOP-KAT"
+  DTS:CreatorName="LAPTOP-KAT\janet"
+  DTS:DTSID="{69AA406E-7BB7-400B-ABD3-2FFB63E69327}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.150"
+  DTS:LocaleID="1036"
+  DTS:ObjectName="DWH_FactCrimes"
+  DTS:PackageType="5"
+  DTS:VersionBuild="29"
+  DTS:VersionGUID="{11A3BA4A-298F-41D9-86D8-3FA96FB6B04A}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DFT - Loading FactCrimes"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tâche de flux de données"
+      DTS:DTSID="{19A0E478-25DF-4E42-86C5-2FC2F000BF6C}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DFT - Loading FactCrimes"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DFT - Loading FactCrimes\AGG - Grouping"
+              componentClassID="Microsoft.Aggregate"
+              contactInfo="Agrégation;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;3"
+              description="Agrège des données avec des fonctions telles que Moyenne, Somme, Nombre, Max.et Min. Par exemple, regroupez des données pour calculer la somme des ventes par produit ou la moyenne des visites par jour."
+              name="AGG - Grouping"
+              version="3">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le nombre approximatif de clés GROUP BY produites par l'agrégation. Basse indique 500 000 valeurs de clés, Moyenne indique 5 millions de valeurs de clés et Haute indique plus de 25 millions de valeurs de clés. Non spécifié indique qu'aucune valeur KeyScale n'est utilisée."
+                  name="KeyScale"
+                  typeConverter="KeyScaleType">0</property>
+                <property
+                  dataType="System.Null"
+                  description="Spécifie le nombre exact de clés GROUP BY produites par l'agrégation. Si une valeur KeyScale est spécifiée, la valeur dans Keys est prioritaire."
+                  name="Keys" />
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le nombre approximatif de valeurs distinctes totalisé distinctement par l'agrégation dans une colonne. Basse indique 500 000 valeurs de clés, Moyenne indique 5 millions de valeurs de clés et Haute indique plus de 25 millions de valeurs de clés. Non spécifié indique qu'aucune valeur CountDistinctScale n'est utilisée."
+                  name="CountDistinctScale"
+                  typeConverter="KeyScaleType">0</property>
+                <property
+                  dataType="System.Null"
+                  description="Spécifie le nombre exact de valeurs distinctes totalisées distinctement par l'agrégation dans une colonne. Si une valeur CountDistinctScale est spécifiée, la valeur dans CountDistinctKeys est prioritaire."
+                  name="CountDistinctKeys" />
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le pourcentage possible d'extension de la mémoire pendant l'agrégation. Les valeurs valides vont de 1 à 100."
+                  name="AutoExtendFactor">25</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\DFT - Loading FactCrimes\AGG - Grouping.Inputs[Entrée d'agrégation 1]"
+                  name="Entrée d'agrégation 1">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT - Loading FactCrimes\AGG - Grouping.Inputs[Entrée d'agrégation 1].Columns[Error_date]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Error_date"
+                      lineageId="Package\DFT - Loading FactCrimes\ALL - Errors.Outputs[Unir tout sortie 1].Columns[Error_date]" />
+                    <inputColumn
+                      refId="Package\DFT - Loading FactCrimes\AGG - Grouping.Inputs[Entrée d'agrégation 1].Columns[Error_column]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Error_column"
+                      lineageId="Package\DFT - Loading FactCrimes\ALL - Errors.Outputs[Unir tout sortie 1].Columns[Error_column]" />
+                    <inputColumn
+                      refId="Package\DFT - Loading FactCrimes\AGG - Grouping.Inputs[Entrée d'agrégation 1].Columns[Error_message]"
+                      cachedDataType="wstr"
+                      cachedLength="98"
+                      cachedName="Error_message"
+                      lineageId="Package\DFT - Loading FactCrimes\ALL - Errors.Outputs[Unir tout sortie 1].Columns[Error_message]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - Loading FactCrimes\AGG - Grouping.Outputs[Sortie d'agrégation 1]"
+                  name="Sortie d'agrégation 1">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="Spécifie le nombre approximatif de clés GROUP BY produites par l'agrégation. Basse indique 500 000 valeurs de clés, Moyenne indique 5 millions de valeurs de clés et Haute indique plus de 25 millions de valeurs de clés. Non spécifié indique qu'aucune valeur KeyScale n'est utilisée."
+                      name="KeyScale"
+                      typeConverter="KeyScaleType">0</property>
+                    <property
+                      dataType="System.Null"
+                      description="Spécifie le nombre exact de clés GROUP BY produites par l'agrégation. Si une valeur KeyScale est spécifiée, la valeur dans Keys est prioritaire."
+                      name="Keys" />
+                  </properties>
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Loading FactCrimes\AGG - Grouping.Outputs[Sortie d'agrégation 1].Columns[Error_date]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DFT - Loading FactCrimes\AGG - Grouping.Outputs[Sortie d'agrégation 1].Columns[Error_date]"
+                      name="Error_date">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'ID de la colonne d'entrée utilisé dans l'agrégation."
+                          name="AggregationColumnId">#{Package\DFT - Loading FactCrimes\ALL - Errors.Outputs[Unir tout sortie 1].Columns[Error_date]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie le type d'agrégation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indique si la colonne nécessite un traitement spécial, au cas où elle contiendrait des données dépassant la taille limite ou nécessiterait une précision au-delà du type de données float."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison de chaînes."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - Loading FactCrimes\AGG - Grouping.Outputs[Sortie d'agrégation 1].Columns[Error_column]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\DFT - Loading FactCrimes\AGG - Grouping.Outputs[Sortie d'agrégation 1].Columns[Error_column]"
+                      name="Error_column">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'ID de la colonne d'entrée utilisé dans l'agrégation."
+                          name="AggregationColumnId">#{Package\DFT - Loading FactCrimes\ALL - Errors.Outputs[Unir tout sortie 1].Columns[Error_column]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie le type d'agrégation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indique si la colonne nécessite un traitement spécial, au cas où elle contiendrait des données dépassant la taille limite ou nécessiterait une précision au-delà du type de données float."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison de chaînes."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - Loading FactCrimes\AGG - Grouping.Outputs[Sortie d'agrégation 1].Columns[Error_message]"
+                      dataType="wstr"
+                      length="98"
+                      lineageId="Package\DFT - Loading FactCrimes\AGG - Grouping.Outputs[Sortie d'agrégation 1].Columns[Error_message]"
+                      name="Error_message">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'ID de la colonne d'entrée utilisé dans l'agrégation."
+                          name="AggregationColumnId">#{Package\DFT - Loading FactCrimes\ALL - Errors.Outputs[Unir tout sortie 1].Columns[Error_message]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie le type d'agrégation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indique si la colonne nécessite un traitement spécial, au cas où elle contiendrait des données dépassant la taille limite ou nécessiterait une précision au-delà du type de données float."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison de chaînes."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - Loading FactCrimes\AGG - Grouping.Outputs[Sortie d'agrégation 1].Columns[Nb_rows]"
+                      dataType="ui8"
+                      lineageId="Package\DFT - Loading FactCrimes\AGG - Grouping.Outputs[Sortie d'agrégation 1].Columns[Nb_rows]"
+                      name="Nb_rows">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'ID de la colonne d'entrée utilisé dans l'agrégation."
+                          name="AggregationColumnId">#{Package\DFT - Loading FactCrimes\0:invalid}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie le type d'agrégation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">2</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indique si la colonne nécessite un traitement spécial, au cas où elle contiendrait des données dépassant la taille limite ou nécessiterait une précision au-delà du type de données float."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison de chaînes."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - Loading FactCrimes\ALL - Errors"
+              componentClassID="Microsoft.UnionAll"
+              contactInfo="Unir tout;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;1"
+              description="Combine des lignes de plusieurs flux de données sans effectuer de tri. Par exemple, rajoutez des lignes à un flux de données après correction des erreurs. Si le tri est important, nous recommandons l'utilisation de la transformation de fusion."
+              name="ALL - Errors"
+              version="1">
+              <inputs>
+                <input
+                  refId="Package\DFT - Loading FactCrimes\ALL - Errors.Inputs[Entrée Union All 2]"
+                  hasSideEffects="true"
+                  name="Entrée Union All 2">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT - Loading FactCrimes\ALL - Errors.Inputs[Entrée Union All 2].Columns[Department]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Department"
+                      lineageId="Package\DFT - Loading FactCrimes\OLE_SRC - ODS Crimes.Outputs[Sortie de source OLE DB].Columns[Department]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="ID de traçabilité de colonne de sortie"
+                          name="OutputColumnLineageID">#{Package\DFT - Loading FactCrimes\ALL - Errors.Outputs[Unir tout sortie 1].Columns[Department]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT - Loading FactCrimes\ALL - Errors.Inputs[Entrée Union All 2].Columns[Index]"
+                      cachedDataType="i8"
+                      cachedName="Index"
+                      lineageId="Package\DFT - Loading FactCrimes\OLE_SRC - ODS Crimes.Outputs[Sortie de source OLE DB].Columns[Index]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="ID de traçabilité de colonne de sortie"
+                          name="OutputColumnLineageID">#{Package\DFT - Loading FactCrimes\ALL - Errors.Outputs[Unir tout sortie 1].Columns[Index]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT - Loading FactCrimes\ALL - Errors.Inputs[Entrée Union All 2].Columns[Libellé_index]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="Libellé_index"
+                      lineageId="Package\DFT - Loading FactCrimes\OLE_SRC - ODS Crimes.Outputs[Sortie de source OLE DB].Columns[Libellé_index]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="ID de traçabilité de colonne de sortie"
+                          name="OutputColumnLineageID">#{Package\DFT - Loading FactCrimes\ALL - Errors.Outputs[Unir tout sortie 1].Columns[Libellé_index]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT - Loading FactCrimes\ALL - Errors.Inputs[Entrée Union All 2].Columns[Date]"
+                      cachedDataType="dbDate"
+                      cachedName="Date"
+                      lineageId="Package\DFT - Loading FactCrimes\OLE_SRC - ODS Crimes.Outputs[Sortie de source OLE DB].Columns[Date]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="ID de traçabilité de colonne de sortie"
+                          name="OutputColumnLineageID">#{Package\DFT - Loading FactCrimes\ALL - Errors.Outputs[Unir tout sortie 1].Columns[Date]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT - Loading FactCrimes\ALL - Errors.Inputs[Entrée Union All 2].Columns[Number_Of_Crimes]"
+                      cachedDataType="i4"
+                      cachedName="Number_Of_Crimes"
+                      lineageId="Package\DFT - Loading FactCrimes\OLE_SRC - ODS Crimes.Outputs[Sortie de source OLE DB].Columns[Number_Of_Crimes]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="ID de traçabilité de colonne de sortie"
+                          name="OutputColumnLineageID">#{Package\DFT - Loading FactCrimes\ALL - Errors.Outputs[Unir tout sortie 1].Columns[Number_Of_Crimes]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT - Loading FactCrimes\ALL - Errors.Inputs[Entrée Union All 2].Columns[Error_date]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Error_date"
+                      lineageId="Package\DFT - Loading FactCrimes\DER - Error info (Department).Outputs[Sortie de colonne dérivée].Columns[Error_date]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="ID de traçabilité de colonne de sortie"
+                          name="OutputColumnLineageID">#{Package\DFT - Loading FactCrimes\ALL - Errors.Outputs[Unir tout sortie 1].Columns[Error_date]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT - Loading FactCrimes\ALL - Errors.Inputs[Entrée Union All 2].Columns[Error_column]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="Error_column"
+                      lineageId="Package\DFT - Loading FactCrimes\DER - Error info (Department).Outputs[Sortie de colonne dérivée].Columns[Error_column]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="ID de traçabilité de colonne de sortie"
+                          name="OutputColumnLineageID">#{Package\DFT - Loading FactCrimes\ALL - Errors.Outputs[Unir tout sortie 1].Columns[Error_column]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT - Loading FactCrimes\ALL - Errors.Inputs[Entrée Union All 2].Columns[Error_message]"
+                      cachedDataType="wstr"
+                      cachedLength="98"
+                      cachedName="Error_message"
+                      lineageId="Package\DFT - Loading FactCrimes\DER - Error info (Department).Outputs[Sortie de colonne dérivée].Columns[Error_message]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="ID de traçabilité de colonne de sortie"
+                          name="OutputColumnLineageID">#{Package\DFT - Loading FactCrimes\ALL - Errors.Outputs[Unir tout sortie 1].Columns[Error_message]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\DFT - Loading FactCrimes\ALL - Errors.Inputs[Entrée Union All 1]"
+                  hasSideEffects="true"
+                  name="Entrée Union All 1">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT - Loading FactCrimes\ALL - Errors.Inputs[Entrée Union All 1].Columns[Department]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Department"
+                      lineageId="Package\DFT - Loading FactCrimes\OLE_SRC - ODS Crimes.Outputs[Sortie de source OLE DB].Columns[Department]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="ID de traçabilité de colonne de sortie"
+                          name="OutputColumnLineageID">#{Package\DFT - Loading FactCrimes\ALL - Errors.Outputs[Unir tout sortie 1].Columns[Department]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT - Loading FactCrimes\ALL - Errors.Inputs[Entrée Union All 1].Columns[Index]"
+                      cachedDataType="i8"
+                      cachedName="Index"
+                      lineageId="Package\DFT - Loading FactCrimes\OLE_SRC - ODS Crimes.Outputs[Sortie de source OLE DB].Columns[Index]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="ID de traçabilité de colonne de sortie"
+                          name="OutputColumnLineageID">#{Package\DFT - Loading FactCrimes\ALL - Errors.Outputs[Unir tout sortie 1].Columns[Index]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT - Loading FactCrimes\ALL - Errors.Inputs[Entrée Union All 1].Columns[Libellé_index]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="Libellé_index"
+                      lineageId="Package\DFT - Loading FactCrimes\OLE_SRC - ODS Crimes.Outputs[Sortie de source OLE DB].Columns[Libellé_index]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="ID de traçabilité de colonne de sortie"
+                          name="OutputColumnLineageID">#{Package\DFT - Loading FactCrimes\ALL - Errors.Outputs[Unir tout sortie 1].Columns[Libellé_index]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT - Loading FactCrimes\ALL - Errors.Inputs[Entrée Union All 1].Columns[Date]"
+                      cachedDataType="dbDate"
+                      cachedName="Date"
+                      lineageId="Package\DFT - Loading FactCrimes\OLE_SRC - ODS Crimes.Outputs[Sortie de source OLE DB].Columns[Date]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="ID de traçabilité de colonne de sortie"
+                          name="OutputColumnLineageID">#{Package\DFT - Loading FactCrimes\ALL - Errors.Outputs[Unir tout sortie 1].Columns[Date]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT - Loading FactCrimes\ALL - Errors.Inputs[Entrée Union All 1].Columns[Number_Of_Crimes]"
+                      cachedDataType="i4"
+                      cachedName="Number_Of_Crimes"
+                      lineageId="Package\DFT - Loading FactCrimes\OLE_SRC - ODS Crimes.Outputs[Sortie de source OLE DB].Columns[Number_Of_Crimes]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="ID de traçabilité de colonne de sortie"
+                          name="OutputColumnLineageID">#{Package\DFT - Loading FactCrimes\ALL - Errors.Outputs[Unir tout sortie 1].Columns[Number_Of_Crimes]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT - Loading FactCrimes\ALL - Errors.Inputs[Entrée Union All 1].Columns[Error_date]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Error_date"
+                      lineageId="Package\DFT - Loading FactCrimes\DER - Error info (Libellé).Outputs[Sortie de colonne dérivée].Columns[Error_date]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="ID de traçabilité de colonne de sortie"
+                          name="OutputColumnLineageID">#{Package\DFT - Loading FactCrimes\ALL - Errors.Outputs[Unir tout sortie 1].Columns[Error_date]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT - Loading FactCrimes\ALL - Errors.Inputs[Entrée Union All 1].Columns[Error_column]"
+                      cachedDataType="wstr"
+                      cachedLength="5"
+                      cachedName="Error_column"
+                      lineageId="Package\DFT - Loading FactCrimes\DER - Error info (Libellé).Outputs[Sortie de colonne dérivée].Columns[Error_column]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="ID de traçabilité de colonne de sortie"
+                          name="OutputColumnLineageID">#{Package\DFT - Loading FactCrimes\ALL - Errors.Outputs[Unir tout sortie 1].Columns[Error_column]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT - Loading FactCrimes\ALL - Errors.Inputs[Entrée Union All 1].Columns[Error_message]"
+                      cachedDataType="wstr"
+                      cachedLength="44"
+                      cachedName="Error_message"
+                      lineageId="Package\DFT - Loading FactCrimes\DER - Error info (Libellé).Outputs[Sortie de colonne dérivée].Columns[Error_message]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="ID de traçabilité de colonne de sortie"
+                          name="OutputColumnLineageID">#{Package\DFT - Loading FactCrimes\ALL - Errors.Outputs[Unir tout sortie 1].Columns[Error_message]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\DFT - Loading FactCrimes\ALL - Errors.Inputs[Entrée Union All 3]"
+                  hasSideEffects="true"
+                  name="Entrée Union All 3">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT - Loading FactCrimes\ALL - Errors.Inputs[Entrée Union All 3].Columns[Department]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Department"
+                      lineageId="Package\DFT - Loading FactCrimes\OLE_SRC - ODS Crimes.Outputs[Sortie de source OLE DB].Columns[Department]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="ID de traçabilité de colonne de sortie"
+                          name="OutputColumnLineageID">#{Package\DFT - Loading FactCrimes\ALL - Errors.Outputs[Unir tout sortie 1].Columns[Department]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT - Loading FactCrimes\ALL - Errors.Inputs[Entrée Union All 3].Columns[Index]"
+                      cachedDataType="i8"
+                      cachedName="Index"
+                      lineageId="Package\DFT - Loading FactCrimes\OLE_SRC - ODS Crimes.Outputs[Sortie de source OLE DB].Columns[Index]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="ID de traçabilité de colonne de sortie"
+                          name="OutputColumnLineageID">#{Package\DFT - Loading FactCrimes\ALL - Errors.Outputs[Unir tout sortie 1].Columns[Index]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT - Loading FactCrimes\ALL - Errors.Inputs[Entrée Union All 3].Columns[Libellé_index]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="Libellé_index"
+                      lineageId="Package\DFT - Loading FactCrimes\OLE_SRC - ODS Crimes.Outputs[Sortie de source OLE DB].Columns[Libellé_index]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="ID de traçabilité de colonne de sortie"
+                          name="OutputColumnLineageID">#{Package\DFT - Loading FactCrimes\ALL - Errors.Outputs[Unir tout sortie 1].Columns[Libellé_index]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT - Loading FactCrimes\ALL - Errors.Inputs[Entrée Union All 3].Columns[Date]"
+                      cachedDataType="dbDate"
+                      cachedName="Date"
+                      lineageId="Package\DFT - Loading FactCrimes\OLE_SRC - ODS Crimes.Outputs[Sortie de source OLE DB].Columns[Date]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="ID de traçabilité de colonne de sortie"
+                          name="OutputColumnLineageID">#{Package\DFT - Loading FactCrimes\ALL - Errors.Outputs[Unir tout sortie 1].Columns[Date]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT - Loading FactCrimes\ALL - Errors.Inputs[Entrée Union All 3].Columns[Number_Of_Crimes]"
+                      cachedDataType="i4"
+                      cachedName="Number_Of_Crimes"
+                      lineageId="Package\DFT - Loading FactCrimes\OLE_SRC - ODS Crimes.Outputs[Sortie de source OLE DB].Columns[Number_Of_Crimes]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="ID de traçabilité de colonne de sortie"
+                          name="OutputColumnLineageID">#{Package\DFT - Loading FactCrimes\ALL - Errors.Outputs[Unir tout sortie 1].Columns[Number_Of_Crimes]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT - Loading FactCrimes\ALL - Errors.Inputs[Entrée Union All 3].Columns[Error_date]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Error_date"
+                      lineageId="Package\DFT - Loading FactCrimes\DER - Error info (Date).Outputs[Sortie de colonne dérivée].Columns[Error_date]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="ID de traçabilité de colonne de sortie"
+                          name="OutputColumnLineageID">#{Package\DFT - Loading FactCrimes\ALL - Errors.Outputs[Unir tout sortie 1].Columns[Error_date]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT - Loading FactCrimes\ALL - Errors.Inputs[Entrée Union All 3].Columns[Error_column]"
+                      cachedDataType="wstr"
+                      cachedLength="4"
+                      cachedName="Error_column"
+                      lineageId="Package\DFT - Loading FactCrimes\DER - Error info (Date).Outputs[Sortie de colonne dérivée].Columns[Error_column]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="ID de traçabilité de colonne de sortie"
+                          name="OutputColumnLineageID">#{Package\DFT - Loading FactCrimes\ALL - Errors.Outputs[Unir tout sortie 1].Columns[Error_column]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT - Loading FactCrimes\ALL - Errors.Inputs[Entrée Union All 3].Columns[Error_message]"
+                      cachedDataType="wstr"
+                      cachedLength="46"
+                      cachedName="Error_message"
+                      lineageId="Package\DFT - Loading FactCrimes\DER - Error info (Date).Outputs[Sortie de colonne dérivée].Columns[Error_message]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="ID de traçabilité de colonne de sortie"
+                          name="OutputColumnLineageID">#{Package\DFT - Loading FactCrimes\ALL - Errors.Outputs[Unir tout sortie 1].Columns[Error_message]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\DFT - Loading FactCrimes\ALL - Errors.Inputs[Entrée Union All 4]"
+                  dangling="true"
+                  hasSideEffects="true"
+                  name="Entrée Union All 4">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - Loading FactCrimes\ALL - Errors.Outputs[Unir tout sortie 1]"
+                  name="Unir tout sortie 1">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Loading FactCrimes\ALL - Errors.Outputs[Unir tout sortie 1].Columns[Department]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\DFT - Loading FactCrimes\ALL - Errors.Outputs[Unir tout sortie 1].Columns[Department]"
+                      name="Department" />
+                    <outputColumn
+                      refId="Package\DFT - Loading FactCrimes\ALL - Errors.Outputs[Unir tout sortie 1].Columns[Index]"
+                      dataType="i8"
+                      lineageId="Package\DFT - Loading FactCrimes\ALL - Errors.Outputs[Unir tout sortie 1].Columns[Index]"
+                      name="Index" />
+                    <outputColumn
+                      refId="Package\DFT - Loading FactCrimes\ALL - Errors.Outputs[Unir tout sortie 1].Columns[Libellé_index]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\DFT - Loading FactCrimes\ALL - Errors.Outputs[Unir tout sortie 1].Columns[Libellé_index]"
+                      name="Libellé_index" />
+                    <outputColumn
+                      refId="Package\DFT - Loading FactCrimes\ALL - Errors.Outputs[Unir tout sortie 1].Columns[Date]"
+                      dataType="dbDate"
+                      lineageId="Package\DFT - Loading FactCrimes\ALL - Errors.Outputs[Unir tout sortie 1].Columns[Date]"
+                      name="Date" />
+                    <outputColumn
+                      refId="Package\DFT - Loading FactCrimes\ALL - Errors.Outputs[Unir tout sortie 1].Columns[Number_Of_Crimes]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Loading FactCrimes\ALL - Errors.Outputs[Unir tout sortie 1].Columns[Number_Of_Crimes]"
+                      name="Number_Of_Crimes" />
+                    <outputColumn
+                      refId="Package\DFT - Loading FactCrimes\ALL - Errors.Outputs[Unir tout sortie 1].Columns[Error_date]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DFT - Loading FactCrimes\ALL - Errors.Outputs[Unir tout sortie 1].Columns[Error_date]"
+                      name="Error_date" />
+                    <outputColumn
+                      refId="Package\DFT - Loading FactCrimes\ALL - Errors.Outputs[Unir tout sortie 1].Columns[Error_column]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\DFT - Loading FactCrimes\ALL - Errors.Outputs[Unir tout sortie 1].Columns[Error_column]"
+                      name="Error_column" />
+                    <outputColumn
+                      refId="Package\DFT - Loading FactCrimes\ALL - Errors.Outputs[Unir tout sortie 1].Columns[Error_message]"
+                      dataType="wstr"
+                      length="98"
+                      lineageId="Package\DFT - Loading FactCrimes\ALL - Errors.Outputs[Unir tout sortie 1].Columns[Error_message]"
+                      name="Error_message" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - Loading FactCrimes\DER - Error info (Date)"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Colonne dérivée;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;0"
+              description="Crée de nouvelles valeurs de colonne en appliquant des expressions aux colonnes d'entrée de transformation. Créez de nouvelles colonnes ou remplacez celles qui existent déjà. Par exemple, concaténez les valeurs de la colonne 'prénom' et de la colonne 'nom' pour créer une colonne 'nom complet'."
+              name="DER - Error info (Date)"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DFT - Loading FactCrimes\DER - Error info (Date).Inputs[Entrée de colonne dérivée]"
+                  description="Entrée de la transformation de colonnes dérivées"
+                  name="Entrée de colonne dérivée">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT - Loading FactCrimes\DER - Error info (Date).Inputs[Entrée de colonne dérivée].Columns[Date]"
+                      cachedDataType="dbDate"
+                      cachedName="Date"
+                      lineageId="Package\DFT - Loading FactCrimes\OLE_SRC - ODS Crimes.Outputs[Sortie de source OLE DB].Columns[Date]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - Loading FactCrimes\DER - Error info (Date).Outputs[Sortie de colonne dérivée]"
+                  description="Sortie par défaut de la transformation de colonnes dérivées"
+                  exclusionGroup="1"
+                  name="Sortie de colonne dérivée"
+                  synchronousInputId="Package\DFT - Loading FactCrimes\DER - Error info (Date).Inputs[Entrée de colonne dérivée]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Loading FactCrimes\DER - Error info (Date).Outputs[Sortie de colonne dérivée].Columns[Error_date]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Calcul"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DFT - Loading FactCrimes\DER - Error info (Date).Outputs[Sortie de colonne dérivée].Columns[Error_date]"
+                      name="Error_date"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression de colonne dérivée"
+                          name="Expression">[GETDATE]()</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression claire de colonne dérivée"
+                          expressionType="Notify"
+                          name="FriendlyExpression">GETDATE()</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - Loading FactCrimes\DER - Error info (Date).Outputs[Sortie de colonne dérivée].Columns[Error_column]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Calcul"
+                      errorRowDisposition="FailComponent"
+                      length="4"
+                      lineageId="Package\DFT - Loading FactCrimes\DER - Error info (Date).Outputs[Sortie de colonne dérivée].Columns[Error_column]"
+                      name="Error_column"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression de colonne dérivée"
+                          name="Expression">"Date"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression claire de colonne dérivée"
+                          expressionType="Notify"
+                          name="FriendlyExpression">"Date"</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - Loading FactCrimes\DER - Error info (Date).Outputs[Sortie de colonne dérivée].Columns[Error_message]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Calcul"
+                      errorRowDisposition="FailComponent"
+                      length="46"
+                      lineageId="Package\DFT - Loading FactCrimes\DER - Error info (Date).Outputs[Sortie de colonne dérivée].Columns[Error_message]"
+                      name="Error_message"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression de colonne dérivée"
+                          name="Expression">"The date " + (DT_WSTR,10)#{Package\DFT - Loading FactCrimes\OLE_SRC - ODS Crimes.Outputs[Sortie de source OLE DB].Columns[Date]} + " does not exists in DimDate"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression claire de colonne dérivée"
+                          expressionType="Notify"
+                          name="FriendlyExpression">"The date " + (DT_WSTR,10)Date + " does not exists in DimDate"</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT - Loading FactCrimes\DER - Error info (Date).Outputs[Sortie d'erreur de colonne dérivée]"
+                  description="Sortie d'erreur de la transformation de colonnes dérivées"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de colonne dérivée"
+                  synchronousInputId="Package\DFT - Loading FactCrimes\DER - Error info (Date).Inputs[Entrée de colonne dérivée]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Loading FactCrimes\DER - Error info (Date).Outputs[Sortie d'erreur de colonne dérivée].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Loading FactCrimes\DER - Error info (Date).Outputs[Sortie d'erreur de colonne dérivée].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - Loading FactCrimes\DER - Error info (Date).Outputs[Sortie d'erreur de colonne dérivée].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Loading FactCrimes\DER - Error info (Date).Outputs[Sortie d'erreur de colonne dérivée].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - Loading FactCrimes\DER - Error info (Department)"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Colonne dérivée;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;0"
+              description="Crée de nouvelles valeurs de colonne en appliquant des expressions aux colonnes d'entrée de transformation. Créez de nouvelles colonnes ou remplacez celles qui existent déjà. Par exemple, concaténez les valeurs de la colonne 'prénom' et de la colonne 'nom' pour créer une colonne 'nom complet'."
+              name="DER - Error info (Department)"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DFT - Loading FactCrimes\DER - Error info (Department).Inputs[Entrée de colonne dérivée]"
+                  description="Entrée de la transformation de colonnes dérivées"
+                  name="Entrée de colonne dérivée">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT - Loading FactCrimes\DER - Error info (Department).Inputs[Entrée de colonne dérivée].Columns[Department]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Department"
+                      lineageId="Package\DFT - Loading FactCrimes\OLE_SRC - ODS Crimes.Outputs[Sortie de source OLE DB].Columns[Department]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - Loading FactCrimes\DER - Error info (Department).Outputs[Sortie de colonne dérivée]"
+                  description="Sortie par défaut de la transformation de colonnes dérivées"
+                  exclusionGroup="1"
+                  name="Sortie de colonne dérivée"
+                  synchronousInputId="Package\DFT - Loading FactCrimes\DER - Error info (Department).Inputs[Entrée de colonne dérivée]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Loading FactCrimes\DER - Error info (Department).Outputs[Sortie de colonne dérivée].Columns[Error_date]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Calcul"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DFT - Loading FactCrimes\DER - Error info (Department).Outputs[Sortie de colonne dérivée].Columns[Error_date]"
+                      name="Error_date"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression de colonne dérivée"
+                          name="Expression">[GETDATE]()</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression claire de colonne dérivée"
+                          expressionType="Notify"
+                          name="FriendlyExpression">GETDATE()</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - Loading FactCrimes\DER - Error info (Department).Outputs[Sortie de colonne dérivée].Columns[Error_column]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Calcul"
+                      errorRowDisposition="FailComponent"
+                      length="10"
+                      lineageId="Package\DFT - Loading FactCrimes\DER - Error info (Department).Outputs[Sortie de colonne dérivée].Columns[Error_column]"
+                      name="Error_column"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression de colonne dérivée"
+                          name="Expression">"Department"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression claire de colonne dérivée"
+                          expressionType="Notify"
+                          name="FriendlyExpression">"Department"</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - Loading FactCrimes\DER - Error info (Department).Outputs[Sortie de colonne dérivée].Columns[Error_message]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Calcul"
+                      errorRowDisposition="FailComponent"
+                      length="98"
+                      lineageId="Package\DFT - Loading FactCrimes\DER - Error info (Department).Outputs[Sortie de colonne dérivée].Columns[Error_message]"
+                      name="Error_message"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression de colonne dérivée"
+                          name="Expression">"The department " + #{Package\DFT - Loading FactCrimes\OLE_SRC - ODS Crimes.Outputs[Sortie de source OLE DB].Columns[Department]} + " does not exists in DimDepartment"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression claire de colonne dérivée"
+                          expressionType="Notify"
+                          name="FriendlyExpression">"The department " + Department + " does not exists in DimDepartment"</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT - Loading FactCrimes\DER - Error info (Department).Outputs[Sortie d'erreur de colonne dérivée]"
+                  description="Sortie d'erreur de la transformation de colonnes dérivées"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de colonne dérivée"
+                  synchronousInputId="Package\DFT - Loading FactCrimes\DER - Error info (Department).Inputs[Entrée de colonne dérivée]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Loading FactCrimes\DER - Error info (Department).Outputs[Sortie d'erreur de colonne dérivée].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Loading FactCrimes\DER - Error info (Department).Outputs[Sortie d'erreur de colonne dérivée].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - Loading FactCrimes\DER - Error info (Department).Outputs[Sortie d'erreur de colonne dérivée].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Loading FactCrimes\DER - Error info (Department).Outputs[Sortie d'erreur de colonne dérivée].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - Loading FactCrimes\DER - Error info (Libellé)"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Colonne dérivée;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;0"
+              description="Crée de nouvelles valeurs de colonne en appliquant des expressions aux colonnes d'entrée de transformation. Créez de nouvelles colonnes ou remplacez celles qui existent déjà. Par exemple, concaténez les valeurs de la colonne 'prénom' et de la colonne 'nom' pour créer une colonne 'nom complet'."
+              name="DER - Error info (Libellé)"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DFT - Loading FactCrimes\DER - Error info (Libellé).Inputs[Entrée de colonne dérivée]"
+                  description="Entrée de la transformation de colonnes dérivées"
+                  name="Entrée de colonne dérivée">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT - Loading FactCrimes\DER - Error info (Libellé).Inputs[Entrée de colonne dérivée].Columns[Index]"
+                      cachedDataType="i8"
+                      cachedName="Index"
+                      lineageId="Package\DFT - Loading FactCrimes\OLE_SRC - ODS Crimes.Outputs[Sortie de source OLE DB].Columns[Index]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - Loading FactCrimes\DER - Error info (Libellé).Outputs[Sortie de colonne dérivée]"
+                  description="Sortie par défaut de la transformation de colonnes dérivées"
+                  exclusionGroup="1"
+                  name="Sortie de colonne dérivée"
+                  synchronousInputId="Package\DFT - Loading FactCrimes\DER - Error info (Libellé).Inputs[Entrée de colonne dérivée]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Loading FactCrimes\DER - Error info (Libellé).Outputs[Sortie de colonne dérivée].Columns[Error_date]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Calcul"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DFT - Loading FactCrimes\DER - Error info (Libellé).Outputs[Sortie de colonne dérivée].Columns[Error_date]"
+                      name="Error_date"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression de colonne dérivée"
+                          name="Expression">[GETDATE]()</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression claire de colonne dérivée"
+                          expressionType="Notify"
+                          name="FriendlyExpression">GETDATE()</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - Loading FactCrimes\DER - Error info (Libellé).Outputs[Sortie de colonne dérivée].Columns[Error_column]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Calcul"
+                      errorRowDisposition="FailComponent"
+                      length="5"
+                      lineageId="Package\DFT - Loading FactCrimes\DER - Error info (Libellé).Outputs[Sortie de colonne dérivée].Columns[Error_column]"
+                      name="Error_column"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression de colonne dérivée"
+                          name="Expression">"Index"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression claire de colonne dérivée"
+                          expressionType="Notify"
+                          name="FriendlyExpression">"Index"</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - Loading FactCrimes\DER - Error info (Libellé).Outputs[Sortie de colonne dérivée].Columns[Error_message]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Calcul"
+                      errorRowDisposition="FailComponent"
+                      length="44"
+                      lineageId="Package\DFT - Loading FactCrimes\DER - Error info (Libellé).Outputs[Sortie de colonne dérivée].Columns[Error_message]"
+                      name="Error_message"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression de colonne dérivée"
+                          name="Expression">"The index " + (DT_WSTR,5)#{Package\DFT - Loading FactCrimes\OLE_SRC - ODS Crimes.Outputs[Sortie de source OLE DB].Columns[Index]} + " does not exist in DimLibelle"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression claire de colonne dérivée"
+                          expressionType="Notify"
+                          name="FriendlyExpression">"The index " + (DT_WSTR,5)Index + " does not exist in DimLibelle"</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT - Loading FactCrimes\DER - Error info (Libellé).Outputs[Sortie d'erreur de colonne dérivée]"
+                  description="Sortie d'erreur de la transformation de colonnes dérivées"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de colonne dérivée"
+                  synchronousInputId="Package\DFT - Loading FactCrimes\DER - Error info (Libellé).Inputs[Entrée de colonne dérivée]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Loading FactCrimes\DER - Error info (Libellé).Outputs[Sortie d'erreur de colonne dérivée].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Loading FactCrimes\DER - Error info (Libellé).Outputs[Sortie d'erreur de colonne dérivée].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - Loading FactCrimes\DER - Error info (Libellé).Outputs[Sortie d'erreur de colonne dérivée].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Loading FactCrimes\DER - Error info (Libellé).Outputs[Sortie d'erreur de colonne dérivée].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - Loading FactCrimes\LKP - DimDate"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Recherche;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;6"
+              description="Joint des colonnes supplémentaires au flux de données en recherchant des valeurs dans une table. Par exemple, joignez la colonne 'id employé' à la table des employés afin d'obtenir la 'date d'embauche' et le 'nom de l'employé'. Nous recommandons cette transformation lorsque la table de recherche peut être stockée en mémoire."
+              name="LKP - DimDate"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Spécifie l'instruction SQL qui génère la table de correspondance."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[DimDate]</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie une instruction SQL qui utilise des paramètres pour générer la table de correspondance."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[DimDate]) [refTable]
+where [refTable].[Date] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le type de connexion utilisé pour accéder au dataset de référence."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le type de cache de la table de correspondance."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie comment la transformation de recherche gère les lignes sans entrées correspondantes dans le jeu de données de référence."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le pourcentage du cache alloué aux lignes sans entrées correspondantes dans le dataset de référence."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Utilisation maximale de la mémoire pour le cache de référence sur une plateforme 32 bits."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Utilisation maximale de la mémoire pour le cache de référence sur une plateforme 64 bits."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indique si les métadonnées sont à référencer en format XML."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="DateKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Date" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Day" dataType="DT_UI1" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DaySuffix" dataType="DT_STR" length="2" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="Weekday" dataType="DT_UI1" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="WeekDayName" dataType="DT_STR" length="10" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="WeekDayName_Short" dataType="DT_STR" length="3" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="WeekDayName_FirstLetter" dataType="DT_STR" length="1" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="DOWInMonth" dataType="DT_UI1" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DayOfYear" dataType="DT_I2" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="WeekOfMonth" dataType="DT_UI1" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="WeekOfYear" dataType="DT_UI1" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Month" dataType="DT_UI1" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="MonthName" dataType="DT_STR" length="10" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="MonthName_Short" dataType="DT_STR" length="3" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="MonthName_FirstLetter" dataType="DT_STR" length="1" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="Quarter" dataType="DT_UI1" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="QuarterName" dataType="DT_STR" length="6" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="Year" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="MMYYYY" dataType="DT_STR" length="6" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="MonthYear" dataType="DT_STR" length="7" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="IsWeekend" dataType="DT_BOOL" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Spécifie la liste d'identificateurs de traçabilité se mappant aux paramètres utilisés dans la propriété SQLCommand par l'instruction SQL. Les entrées dans la liste sont séparées par des points-virgules."
+                  name="ParameterMap">#{Package\DFT - Loading FactCrimes\OLE_SRC - ODS Crimes.Outputs[Sortie de source OLE DB].Columns[Date]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Détermine si les clés dupliquées dans les données de référence doivent être traitées en tant qu'erreurs lorsque le mode Cache complet est utilisé."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT - Loading FactCrimes\LKP - DimDate.Connections[OleDbConnection]"
+                  connectionManagerID="{4139BF1A-44C6-40FD-AB68-594B59DCA6B2}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DWH_Project]"
+                  description="Gestionnaire de connexions utilisé pour accéder aux données de correspondance."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT - Loading FactCrimes\LKP - DimDate.Inputs[Entrée de recherche]"
+                  name="Entrée de recherche">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT - Loading FactCrimes\LKP - DimDate.Inputs[Entrée de recherche].Columns[Date]"
+                      cachedDataType="dbDate"
+                      cachedName="Date"
+                      lineageId="Package\DFT - Loading FactCrimes\OLE_SRC - ODS Crimes.Outputs[Sortie de source OLE DB].Columns[Date]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Spécifie la colonne de la table de référence sur laquelle une colonne se lie."
+                          name="JoinToReferenceColumn">Date</property>
+                        <property
+                          dataType="System.Null"
+                          description="Spécifie la colonne de la table de référence à partir de laquelle une colonne est copiée."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - Loading FactCrimes\LKP - DimDate.Outputs[Sortie de recherche avec correspondance]"
+                  errorOrTruncationOperation="Recherche"
+                  exclusionGroup="1"
+                  name="Sortie de recherche avec correspondance"
+                  synchronousInputId="Package\DFT - Loading FactCrimes\LKP - DimDate.Inputs[Entrée de recherche]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Loading FactCrimes\LKP - DimDate.Outputs[Sortie de recherche avec correspondance].Columns[DateKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copie de colonnes"
+                      lineageId="Package\DFT - Loading FactCrimes\LKP - DimDate.Outputs[Sortie de recherche avec correspondance].Columns[DateKey]"
+                      name="DateKey"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Spécifie la colonne de la table de référence à partir de laquelle une colonne est copiée."
+                          name="CopyFromReferenceColumn">DateKey</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT - Loading FactCrimes\LKP - DimDate.Outputs[Sortie de recherche sans correspondance]"
+                  description="Sortie de recherche gérant les lignes sans entrées correspondantes dans le dataset de référence. Utilisez cette sortie lorsque la propriété NoMatchBehavior a la valeur « Envoyez les lignes sans entrées correspondantes dans la sortie sans correspondance »."
+                  exclusionGroup="1"
+                  name="Sortie de recherche sans correspondance"
+                  synchronousInputId="Package\DFT - Loading FactCrimes\LKP - DimDate.Inputs[Entrée de recherche]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT - Loading FactCrimes\LKP - DimDate.Outputs[Sortie d'erreur de recherche]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de recherche"
+                  synchronousInputId="Package\DFT - Loading FactCrimes\LKP - DimDate.Inputs[Entrée de recherche]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Loading FactCrimes\LKP - DimDate.Outputs[Sortie d'erreur de recherche].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Loading FactCrimes\LKP - DimDate.Outputs[Sortie d'erreur de recherche].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - Loading FactCrimes\LKP - DimDate.Outputs[Sortie d'erreur de recherche].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Loading FactCrimes\LKP - DimDate.Outputs[Sortie d'erreur de recherche].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - Loading FactCrimes\LKP - DimDepartment"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Recherche;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;6"
+              description="Joint des colonnes supplémentaires au flux de données en recherchant des valeurs dans une table. Par exemple, joignez la colonne 'id employé' à la table des employés afin d'obtenir la 'date d'embauche' et le 'nom de l'employé'. Nous recommandons cette transformation lorsque la table de recherche peut être stockée en mémoire."
+              name="LKP - DimDepartment"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Spécifie l'instruction SQL qui génère la table de correspondance."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[DimDepartment]</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie une instruction SQL qui utilise des paramètres pour générer la table de correspondance."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[DimDepartment]) [refTable]
+where [refTable].[Code_Postal] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le type de connexion utilisé pour accéder au dataset de référence."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le type de cache de la table de correspondance."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie comment la transformation de recherche gère les lignes sans entrées correspondantes dans le jeu de données de référence."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le pourcentage du cache alloué aux lignes sans entrées correspondantes dans le dataset de référence."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Utilisation maximale de la mémoire pour le cache de référence sur une plateforme 32 bits."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Utilisation maximale de la mémoire pour le cache de référence sur une plateforme 64 bits."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indique si les métadonnées sont à référencer en format XML."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="DepartmentKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Code_Postal" dataType="DT_WSTR" length="5" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Département" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Région" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Spécifie la liste d'identificateurs de traçabilité se mappant aux paramètres utilisés dans la propriété SQLCommand par l'instruction SQL. Les entrées dans la liste sont séparées par des points-virgules."
+                  name="ParameterMap">#{Package\DFT - Loading FactCrimes\OLE_SRC - ODS Crimes.Outputs[Sortie de source OLE DB].Columns[Department]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Détermine si les clés dupliquées dans les données de référence doivent être traitées en tant qu'erreurs lorsque le mode Cache complet est utilisé."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT - Loading FactCrimes\LKP - DimDepartment.Connections[OleDbConnection]"
+                  connectionManagerID="{4139BF1A-44C6-40FD-AB68-594B59DCA6B2}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DWH_Project]"
+                  description="Gestionnaire de connexions utilisé pour accéder aux données de correspondance."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT - Loading FactCrimes\LKP - DimDepartment.Inputs[Entrée de recherche]"
+                  name="Entrée de recherche">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT - Loading FactCrimes\LKP - DimDepartment.Inputs[Entrée de recherche].Columns[Department]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Department"
+                      lineageId="Package\DFT - Loading FactCrimes\OLE_SRC - ODS Crimes.Outputs[Sortie de source OLE DB].Columns[Department]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Spécifie la colonne de la table de référence sur laquelle une colonne se lie."
+                          name="JoinToReferenceColumn">Code_Postal</property>
+                        <property
+                          dataType="System.Null"
+                          description="Spécifie la colonne de la table de référence à partir de laquelle une colonne est copiée."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - Loading FactCrimes\LKP - DimDepartment.Outputs[Sortie de recherche avec correspondance]"
+                  errorOrTruncationOperation="Recherche"
+                  exclusionGroup="1"
+                  name="Sortie de recherche avec correspondance"
+                  synchronousInputId="Package\DFT - Loading FactCrimes\LKP - DimDepartment.Inputs[Entrée de recherche]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Loading FactCrimes\LKP - DimDepartment.Outputs[Sortie de recherche avec correspondance].Columns[DepartmentKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copie de colonnes"
+                      lineageId="Package\DFT - Loading FactCrimes\LKP - DimDepartment.Outputs[Sortie de recherche avec correspondance].Columns[DepartmentKey]"
+                      name="DepartmentKey"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Spécifie la colonne de la table de référence à partir de laquelle une colonne est copiée."
+                          name="CopyFromReferenceColumn">DepartmentKey</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT - Loading FactCrimes\LKP - DimDepartment.Outputs[Sortie de recherche sans correspondance]"
+                  description="Sortie de recherche gérant les lignes sans entrées correspondantes dans le dataset de référence. Utilisez cette sortie lorsque la propriété NoMatchBehavior a la valeur « Envoyez les lignes sans entrées correspondantes dans la sortie sans correspondance »."
+                  exclusionGroup="1"
+                  name="Sortie de recherche sans correspondance"
+                  synchronousInputId="Package\DFT - Loading FactCrimes\LKP - DimDepartment.Inputs[Entrée de recherche]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT - Loading FactCrimes\LKP - DimDepartment.Outputs[Sortie d'erreur de recherche]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de recherche"
+                  synchronousInputId="Package\DFT - Loading FactCrimes\LKP - DimDepartment.Inputs[Entrée de recherche]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Loading FactCrimes\LKP - DimDepartment.Outputs[Sortie d'erreur de recherche].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Loading FactCrimes\LKP - DimDepartment.Outputs[Sortie d'erreur de recherche].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - Loading FactCrimes\LKP - DimDepartment.Outputs[Sortie d'erreur de recherche].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Loading FactCrimes\LKP - DimDepartment.Outputs[Sortie d'erreur de recherche].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - Loading FactCrimes\LKP - DimLibelle"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Recherche;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;6"
+              description="Joint des colonnes supplémentaires au flux de données en recherchant des valeurs dans une table. Par exemple, joignez la colonne 'id employé' à la table des employés afin d'obtenir la 'date d'embauche' et le 'nom de l'employé'. Nous recommandons cette transformation lorsque la table de recherche peut être stockée en mémoire."
+              name="LKP - DimLibelle"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Spécifie l'instruction SQL qui génère la table de correspondance."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[DimLibelle]</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie une instruction SQL qui utilise des paramètres pour générer la table de correspondance."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[DimLibelle]) [refTable]
+where [refTable].[Index] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le type de connexion utilisé pour accéder au dataset de référence."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le type de cache de la table de correspondance."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie comment la transformation de recherche gère les lignes sans entrées correspondantes dans le jeu de données de référence."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le pourcentage du cache alloué aux lignes sans entrées correspondantes dans le dataset de référence."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Utilisation maximale de la mémoire pour le cache de référence sur une plateforme 32 bits."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Utilisation maximale de la mémoire pour le cache de référence sur une plateforme 64 bits."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indique si les métadonnées sont à référencer en format XML."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="LibelleKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Index" dataType="DT_I8" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Libellé_index" dataType="DT_WSTR" length="100" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Spécifie la liste d'identificateurs de traçabilité se mappant aux paramètres utilisés dans la propriété SQLCommand par l'instruction SQL. Les entrées dans la liste sont séparées par des points-virgules."
+                  name="ParameterMap">#{Package\DFT - Loading FactCrimes\OLE_SRC - ODS Crimes.Outputs[Sortie de source OLE DB].Columns[Index]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Détermine si les clés dupliquées dans les données de référence doivent être traitées en tant qu'erreurs lorsque le mode Cache complet est utilisé."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT - Loading FactCrimes\LKP - DimLibelle.Connections[OleDbConnection]"
+                  connectionManagerID="{4139BF1A-44C6-40FD-AB68-594B59DCA6B2}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DWH_Project]"
+                  description="Gestionnaire de connexions utilisé pour accéder aux données de correspondance."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT - Loading FactCrimes\LKP - DimLibelle.Inputs[Entrée de recherche]"
+                  name="Entrée de recherche">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT - Loading FactCrimes\LKP - DimLibelle.Inputs[Entrée de recherche].Columns[Index]"
+                      cachedDataType="i8"
+                      cachedName="Index"
+                      lineageId="Package\DFT - Loading FactCrimes\OLE_SRC - ODS Crimes.Outputs[Sortie de source OLE DB].Columns[Index]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Spécifie la colonne de la table de référence sur laquelle une colonne se lie."
+                          name="JoinToReferenceColumn">Index</property>
+                        <property
+                          dataType="System.Null"
+                          description="Spécifie la colonne de la table de référence à partir de laquelle une colonne est copiée."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - Loading FactCrimes\LKP - DimLibelle.Outputs[Sortie de recherche avec correspondance]"
+                  errorOrTruncationOperation="Recherche"
+                  exclusionGroup="1"
+                  name="Sortie de recherche avec correspondance"
+                  synchronousInputId="Package\DFT - Loading FactCrimes\LKP - DimLibelle.Inputs[Entrée de recherche]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Loading FactCrimes\LKP - DimLibelle.Outputs[Sortie de recherche avec correspondance].Columns[LibelleKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copie de colonnes"
+                      lineageId="Package\DFT - Loading FactCrimes\LKP - DimLibelle.Outputs[Sortie de recherche avec correspondance].Columns[LibelleKey]"
+                      name="LibelleKey"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Spécifie la colonne de la table de référence à partir de laquelle une colonne est copiée."
+                          name="CopyFromReferenceColumn">LibelleKey</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT - Loading FactCrimes\LKP - DimLibelle.Outputs[Sortie de recherche sans correspondance]"
+                  description="Sortie de recherche gérant les lignes sans entrées correspondantes dans le dataset de référence. Utilisez cette sortie lorsque la propriété NoMatchBehavior a la valeur « Envoyez les lignes sans entrées correspondantes dans la sortie sans correspondance »."
+                  exclusionGroup="1"
+                  name="Sortie de recherche sans correspondance"
+                  synchronousInputId="Package\DFT - Loading FactCrimes\LKP - DimLibelle.Inputs[Entrée de recherche]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT - Loading FactCrimes\LKP - DimLibelle.Outputs[Sortie d'erreur de recherche]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de recherche"
+                  synchronousInputId="Package\DFT - Loading FactCrimes\LKP - DimLibelle.Inputs[Entrée de recherche]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Loading FactCrimes\LKP - DimLibelle.Outputs[Sortie d'erreur de recherche].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Loading FactCrimes\LKP - DimLibelle.Outputs[Sortie d'erreur de recherche].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - Loading FactCrimes\LKP - DimLibelle.Outputs[Sortie d'erreur de recherche].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Loading FactCrimes\LKP - DimLibelle.Outputs[Sortie d'erreur de recherche].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - Loading FactCrimes\OLE_DST - FactCrimes"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destination OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;4"
+              description="Destination OLE DB"
+              name="OLE_DST - FactCrimes"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowset">[dbo].[FactCrimes]</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données caractères."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le mode utilisé pour accéder à la base de données."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les valeurs fournies pour les colonnes d'identité seront copiées à la destination. Si la valeur est définie à False, les valeurs des colonnes d'identité seront générées automatiquement à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les colonnes contenant la valeur NULL auront cette valeur NULL copiée à la destination. Si la valeur est définie à False, les colonnes contenant la valeur NULL auront leurs valeurs par défaut insérées à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie les options à utiliser avec le chargement rapide.  Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie quand les validations sont émises pendant l'insertion des données.  Une valeur égale à 0 spécifie qu'une validation sera émise à la fin de l'insertion des données.  Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT - Loading FactCrimes\OLE_DST - FactCrimes.Connections[OleDbConnection]"
+                  connectionManagerID="{4139BF1A-44C6-40FD-AB68-594B59DCA6B2}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DWH_Project]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT - Loading FactCrimes\OLE_DST - FactCrimes.Inputs[Entrée de destination OLE DB]"
+                  errorOrTruncationOperation="Insérer"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrée de destination OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT - Loading FactCrimes\OLE_DST - FactCrimes.Inputs[Entrée de destination OLE DB].Columns[Number_Of_Crimes]"
+                      cachedDataType="i4"
+                      cachedName="Number_Of_Crimes"
+                      externalMetadataColumnId="Package\DFT - Loading FactCrimes\OLE_DST - FactCrimes.Inputs[Entrée de destination OLE DB].ExternalColumns[Number_Of_Crimes]"
+                      lineageId="Package\DFT - Loading FactCrimes\OLE_SRC - ODS Crimes.Outputs[Sortie de source OLE DB].Columns[Number_Of_Crimes]" />
+                    <inputColumn
+                      refId="Package\DFT - Loading FactCrimes\OLE_DST - FactCrimes.Inputs[Entrée de destination OLE DB].Columns[LibelleKey]"
+                      cachedDataType="i4"
+                      cachedName="LibelleKey"
+                      externalMetadataColumnId="Package\DFT - Loading FactCrimes\OLE_DST - FactCrimes.Inputs[Entrée de destination OLE DB].ExternalColumns[LibelleKey]"
+                      lineageId="Package\DFT - Loading FactCrimes\LKP - DimLibelle.Outputs[Sortie de recherche avec correspondance].Columns[LibelleKey]" />
+                    <inputColumn
+                      refId="Package\DFT - Loading FactCrimes\OLE_DST - FactCrimes.Inputs[Entrée de destination OLE DB].Columns[DateKey]"
+                      cachedDataType="i4"
+                      cachedName="DateKey"
+                      externalMetadataColumnId="Package\DFT - Loading FactCrimes\OLE_DST - FactCrimes.Inputs[Entrée de destination OLE DB].ExternalColumns[DateKey]"
+                      lineageId="Package\DFT - Loading FactCrimes\LKP - DimDate.Outputs[Sortie de recherche avec correspondance].Columns[DateKey]" />
+                    <inputColumn
+                      refId="Package\DFT - Loading FactCrimes\OLE_DST - FactCrimes.Inputs[Entrée de destination OLE DB].Columns[DepartmentKey]"
+                      cachedDataType="i4"
+                      cachedName="DepartmentKey"
+                      externalMetadataColumnId="Package\DFT - Loading FactCrimes\OLE_DST - FactCrimes.Inputs[Entrée de destination OLE DB].ExternalColumns[DepartmentKey]"
+                      lineageId="Package\DFT - Loading FactCrimes\LKP - DimDepartment.Outputs[Sortie de recherche avec correspondance].Columns[DepartmentKey]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT - Loading FactCrimes\OLE_DST - FactCrimes.Inputs[Entrée de destination OLE DB].ExternalColumns[LibelleKey]"
+                      dataType="i4"
+                      name="LibelleKey" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Loading FactCrimes\OLE_DST - FactCrimes.Inputs[Entrée de destination OLE DB].ExternalColumns[DepartmentKey]"
+                      dataType="i4"
+                      name="DepartmentKey" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Loading FactCrimes\OLE_DST - FactCrimes.Inputs[Entrée de destination OLE DB].ExternalColumns[DateKey]"
+                      dataType="i4"
+                      name="DateKey" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Loading FactCrimes\OLE_DST - FactCrimes.Inputs[Entrée de destination OLE DB].ExternalColumns[Number_Of_Crimes]"
+                      dataType="i4"
+                      name="Number_Of_Crimes" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - Loading FactCrimes\OLE_DST - FactCrimes.Outputs[Sortie d'erreur de destination OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de destination OLE DB"
+                  synchronousInputId="Package\DFT - Loading FactCrimes\OLE_DST - FactCrimes.Inputs[Entrée de destination OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Loading FactCrimes\OLE_DST - FactCrimes.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Loading FactCrimes\OLE_DST - FactCrimes.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - Loading FactCrimes\OLE_DST - FactCrimes.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Loading FactCrimes\OLE_DST - FactCrimes.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - Loading FactCrimes\OLE_DST - Functional_rejects"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destination OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;4"
+              description="Destination OLE DB"
+              name="OLE_DST - Functional_rejects"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowset">[Functional_rejects]</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données caractères."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le mode utilisé pour accéder à la base de données."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les valeurs fournies pour les colonnes d'identité seront copiées à la destination. Si la valeur est définie à False, les valeurs des colonnes d'identité seront générées automatiquement à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les colonnes contenant la valeur NULL auront cette valeur NULL copiée à la destination. Si la valeur est définie à False, les colonnes contenant la valeur NULL auront leurs valeurs par défaut insérées à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie les options à utiliser avec le chargement rapide.  Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie quand les validations sont émises pendant l'insertion des données.  Une valeur égale à 0 spécifie qu'une validation sera émise à la fin de l'insertion des données.  Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT - Loading FactCrimes\OLE_DST - Functional_rejects.Connections[OleDbConnection]"
+                  connectionManagerID="{5713C75A-BDBE-43DE-8270-20855F4DC46D}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[STA_Project]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT - Loading FactCrimes\OLE_DST - Functional_rejects.Inputs[Entrée de destination OLE DB]"
+                  errorOrTruncationOperation="Insérer"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrée de destination OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT - Loading FactCrimes\OLE_DST - Functional_rejects.Inputs[Entrée de destination OLE DB].Columns[Error_date]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Error_date"
+                      externalMetadataColumnId="Package\DFT - Loading FactCrimes\OLE_DST - Functional_rejects.Inputs[Entrée de destination OLE DB].ExternalColumns[Error_date]"
+                      lineageId="Package\DFT - Loading FactCrimes\AGG - Grouping.Outputs[Sortie d'agrégation 1].Columns[Error_date]" />
+                    <inputColumn
+                      refId="Package\DFT - Loading FactCrimes\OLE_DST - Functional_rejects.Inputs[Entrée de destination OLE DB].Columns[Error_column]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Error_column"
+                      externalMetadataColumnId="Package\DFT - Loading FactCrimes\OLE_DST - Functional_rejects.Inputs[Entrée de destination OLE DB].ExternalColumns[Error_column]"
+                      lineageId="Package\DFT - Loading FactCrimes\AGG - Grouping.Outputs[Sortie d'agrégation 1].Columns[Error_column]" />
+                    <inputColumn
+                      refId="Package\DFT - Loading FactCrimes\OLE_DST - Functional_rejects.Inputs[Entrée de destination OLE DB].Columns[Error_message]"
+                      cachedDataType="wstr"
+                      cachedLength="98"
+                      cachedName="Error_message"
+                      externalMetadataColumnId="Package\DFT - Loading FactCrimes\OLE_DST - Functional_rejects.Inputs[Entrée de destination OLE DB].ExternalColumns[Error_message]"
+                      lineageId="Package\DFT - Loading FactCrimes\AGG - Grouping.Outputs[Sortie d'agrégation 1].Columns[Error_message]" />
+                    <inputColumn
+                      refId="Package\DFT - Loading FactCrimes\OLE_DST - Functional_rejects.Inputs[Entrée de destination OLE DB].Columns[Nb_rows]"
+                      cachedDataType="ui8"
+                      cachedName="Nb_rows"
+                      externalMetadataColumnId="Package\DFT - Loading FactCrimes\OLE_DST - Functional_rejects.Inputs[Entrée de destination OLE DB].ExternalColumns[Nb_rows]"
+                      lineageId="Package\DFT - Loading FactCrimes\AGG - Grouping.Outputs[Sortie d'agrégation 1].Columns[Nb_rows]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT - Loading FactCrimes\OLE_DST - Functional_rejects.Inputs[Entrée de destination OLE DB].ExternalColumns[Error_date]"
+                      dataType="dbTimeStamp"
+                      name="Error_date" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Loading FactCrimes\OLE_DST - Functional_rejects.Inputs[Entrée de destination OLE DB].ExternalColumns[Error_column]"
+                      dataType="wstr"
+                      length="255"
+                      name="Error_column" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Loading FactCrimes\OLE_DST - Functional_rejects.Inputs[Entrée de destination OLE DB].ExternalColumns[Error_message]"
+                      dataType="wstr"
+                      length="1000"
+                      name="Error_message" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Loading FactCrimes\OLE_DST - Functional_rejects.Inputs[Entrée de destination OLE DB].ExternalColumns[Nb_rows]"
+                      dataType="i4"
+                      name="Nb_rows" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - Loading FactCrimes\OLE_DST - Functional_rejects.Outputs[Sortie d'erreur de destination OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de destination OLE DB"
+                  synchronousInputId="Package\DFT - Loading FactCrimes\OLE_DST - Functional_rejects.Inputs[Entrée de destination OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Loading FactCrimes\OLE_DST - Functional_rejects.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Loading FactCrimes\OLE_DST - Functional_rejects.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - Loading FactCrimes\OLE_DST - Functional_rejects.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Loading FactCrimes\OLE_DST - Functional_rejects.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - Loading FactCrimes\OLE_SRC - ODS Crimes"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Source OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;7"
+              description="Source OLE DB"
+              name="OLE_SRC - ODS Crimes"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowset">[dbo].[Crimes]</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="Variable contenant la commande SQL à exécuter."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données caractères."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le mode utilisé pour accéder à la base de données."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="Mappages entre les paramètres de la commande SQL et les variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT - Loading FactCrimes\OLE_SRC - ODS Crimes.Connections[OleDbConnection]"
+                  connectionManagerID="{EEB843F6-20C9-4A40-8706-B4C0D4653506}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[ODS_Project]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DFT - Loading FactCrimes\OLE_SRC - ODS Crimes.Outputs[Sortie de source OLE DB]"
+                  name="Sortie de source OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Loading FactCrimes\OLE_SRC - ODS Crimes.Outputs[Sortie de source OLE DB].Columns[Department]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Loading FactCrimes\OLE_SRC - ODS Crimes.Outputs[Sortie de source OLE DB].ExternalColumns[Department]"
+                      length="50"
+                      lineageId="Package\DFT - Loading FactCrimes\OLE_SRC - ODS Crimes.Outputs[Sortie de source OLE DB].Columns[Department]"
+                      name="Department"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Loading FactCrimes\OLE_SRC - ODS Crimes.Outputs[Sortie de source OLE DB].Columns[Index]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Loading FactCrimes\OLE_SRC - ODS Crimes.Outputs[Sortie de source OLE DB].ExternalColumns[Index]"
+                      lineageId="Package\DFT - Loading FactCrimes\OLE_SRC - ODS Crimes.Outputs[Sortie de source OLE DB].Columns[Index]"
+                      name="Index"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Loading FactCrimes\OLE_SRC - ODS Crimes.Outputs[Sortie de source OLE DB].Columns[Libellé_index]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Loading FactCrimes\OLE_SRC - ODS Crimes.Outputs[Sortie de source OLE DB].ExternalColumns[Libellé_index]"
+                      length="100"
+                      lineageId="Package\DFT - Loading FactCrimes\OLE_SRC - ODS Crimes.Outputs[Sortie de source OLE DB].Columns[Libellé_index]"
+                      name="Libellé_index"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Loading FactCrimes\OLE_SRC - ODS Crimes.Outputs[Sortie de source OLE DB].Columns[Date]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Loading FactCrimes\OLE_SRC - ODS Crimes.Outputs[Sortie de source OLE DB].ExternalColumns[Date]"
+                      lineageId="Package\DFT - Loading FactCrimes\OLE_SRC - ODS Crimes.Outputs[Sortie de source OLE DB].Columns[Date]"
+                      name="Date"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Loading FactCrimes\OLE_SRC - ODS Crimes.Outputs[Sortie de source OLE DB].Columns[Number_Of_Crimes]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Loading FactCrimes\OLE_SRC - ODS Crimes.Outputs[Sortie de source OLE DB].ExternalColumns[Number_Of_Crimes]"
+                      lineageId="Package\DFT - Loading FactCrimes\OLE_SRC - ODS Crimes.Outputs[Sortie de source OLE DB].Columns[Number_Of_Crimes]"
+                      name="Number_Of_Crimes"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT - Loading FactCrimes\OLE_SRC - ODS Crimes.Outputs[Sortie de source OLE DB].ExternalColumns[Department]"
+                      dataType="wstr"
+                      length="50"
+                      name="Department" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Loading FactCrimes\OLE_SRC - ODS Crimes.Outputs[Sortie de source OLE DB].ExternalColumns[Index]"
+                      dataType="i8"
+                      name="Index" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Loading FactCrimes\OLE_SRC - ODS Crimes.Outputs[Sortie de source OLE DB].ExternalColumns[Libellé_index]"
+                      dataType="wstr"
+                      length="100"
+                      name="Libellé_index" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Loading FactCrimes\OLE_SRC - ODS Crimes.Outputs[Sortie de source OLE DB].ExternalColumns[Date]"
+                      dataType="dbDate"
+                      name="Date" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Loading FactCrimes\OLE_SRC - ODS Crimes.Outputs[Sortie de source OLE DB].ExternalColumns[Number_Of_Crimes]"
+                      dataType="i4"
+                      name="Number_Of_Crimes" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DFT - Loading FactCrimes\OLE_SRC - ODS Crimes.Outputs[Sortie d'erreur de source OLE DB]"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de source OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Loading FactCrimes\OLE_SRC - ODS Crimes.Outputs[Sortie d'erreur de source OLE DB].Columns[Department]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\DFT - Loading FactCrimes\OLE_SRC - ODS Crimes.Outputs[Sortie d'erreur de source OLE DB].Columns[Department]"
+                      name="Department" />
+                    <outputColumn
+                      refId="Package\DFT - Loading FactCrimes\OLE_SRC - ODS Crimes.Outputs[Sortie d'erreur de source OLE DB].Columns[Index]"
+                      dataType="i8"
+                      lineageId="Package\DFT - Loading FactCrimes\OLE_SRC - ODS Crimes.Outputs[Sortie d'erreur de source OLE DB].Columns[Index]"
+                      name="Index" />
+                    <outputColumn
+                      refId="Package\DFT - Loading FactCrimes\OLE_SRC - ODS Crimes.Outputs[Sortie d'erreur de source OLE DB].Columns[Libellé_index]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\DFT - Loading FactCrimes\OLE_SRC - ODS Crimes.Outputs[Sortie d'erreur de source OLE DB].Columns[Libellé_index]"
+                      name="Libellé_index" />
+                    <outputColumn
+                      refId="Package\DFT - Loading FactCrimes\OLE_SRC - ODS Crimes.Outputs[Sortie d'erreur de source OLE DB].Columns[Date]"
+                      dataType="dbDate"
+                      lineageId="Package\DFT - Loading FactCrimes\OLE_SRC - ODS Crimes.Outputs[Sortie d'erreur de source OLE DB].Columns[Date]"
+                      name="Date" />
+                    <outputColumn
+                      refId="Package\DFT - Loading FactCrimes\OLE_SRC - ODS Crimes.Outputs[Sortie d'erreur de source OLE DB].Columns[Number_Of_Crimes]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Loading FactCrimes\OLE_SRC - ODS Crimes.Outputs[Sortie d'erreur de source OLE DB].Columns[Number_Of_Crimes]"
+                      name="Number_Of_Crimes" />
+                    <outputColumn
+                      refId="Package\DFT - Loading FactCrimes\OLE_SRC - ODS Crimes.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Loading FactCrimes\OLE_SRC - ODS Crimes.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - Loading FactCrimes\OLE_SRC - ODS Crimes.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Loading FactCrimes\OLE_SRC - ODS Crimes.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DFT - Loading FactCrimes.Paths[Sortie d'agrégation 1]"
+              endId="Package\DFT - Loading FactCrimes\OLE_DST - Functional_rejects.Inputs[Entrée de destination OLE DB]"
+              name="Sortie d'agrégation 1"
+              startId="Package\DFT - Loading FactCrimes\AGG - Grouping.Outputs[Sortie d'agrégation 1]" />
+            <path
+              refId="Package\DFT - Loading FactCrimes.Paths[Sortie de colonne dérivée]"
+              endId="Package\DFT - Loading FactCrimes\ALL - Errors.Inputs[Entrée Union All 2]"
+              name="Sortie de colonne dérivée"
+              startId="Package\DFT - Loading FactCrimes\DER - Error info (Department).Outputs[Sortie de colonne dérivée]" />
+            <path
+              refId="Package\DFT - Loading FactCrimes.Paths[Sortie de colonne dérivée1]"
+              endId="Package\DFT - Loading FactCrimes\ALL - Errors.Inputs[Entrée Union All 1]"
+              name="Sortie de colonne dérivée"
+              startId="Package\DFT - Loading FactCrimes\DER - Error info (Libellé).Outputs[Sortie de colonne dérivée]" />
+            <path
+              refId="Package\DFT - Loading FactCrimes.Paths[Sortie de colonne dérivée2]"
+              endId="Package\DFT - Loading FactCrimes\ALL - Errors.Inputs[Entrée Union All 3]"
+              name="Sortie de colonne dérivée"
+              startId="Package\DFT - Loading FactCrimes\DER - Error info (Date).Outputs[Sortie de colonne dérivée]" />
+            <path
+              refId="Package\DFT - Loading FactCrimes.Paths[Sortie de recherche avec correspondance]"
+              endId="Package\DFT - Loading FactCrimes\LKP - DimDate.Inputs[Entrée de recherche]"
+              name="Sortie de recherche avec correspondance"
+              startId="Package\DFT - Loading FactCrimes\LKP - DimLibelle.Outputs[Sortie de recherche avec correspondance]" />
+            <path
+              refId="Package\DFT - Loading FactCrimes.Paths[Sortie de recherche avec correspondance1]"
+              endId="Package\DFT - Loading FactCrimes\LKP - DimDepartment.Inputs[Entrée de recherche]"
+              name="Sortie de recherche avec correspondance"
+              startId="Package\DFT - Loading FactCrimes\LKP - DimDate.Outputs[Sortie de recherche avec correspondance]" />
+            <path
+              refId="Package\DFT - Loading FactCrimes.Paths[Sortie de recherche avec correspondance2]"
+              endId="Package\DFT - Loading FactCrimes\OLE_DST - FactCrimes.Inputs[Entrée de destination OLE DB]"
+              name="Sortie de recherche avec correspondance"
+              startId="Package\DFT - Loading FactCrimes\LKP - DimDepartment.Outputs[Sortie de recherche avec correspondance]" />
+            <path
+              refId="Package\DFT - Loading FactCrimes.Paths[Sortie de recherche sans correspondance]"
+              endId="Package\DFT - Loading FactCrimes\DER - Error info (Libellé).Inputs[Entrée de colonne dérivée]"
+              name="Sortie de recherche sans correspondance"
+              startId="Package\DFT - Loading FactCrimes\LKP - DimLibelle.Outputs[Sortie de recherche sans correspondance]" />
+            <path
+              refId="Package\DFT - Loading FactCrimes.Paths[Sortie de recherche sans correspondance1]"
+              endId="Package\DFT - Loading FactCrimes\DER - Error info (Date).Inputs[Entrée de colonne dérivée]"
+              name="Sortie de recherche sans correspondance"
+              startId="Package\DFT - Loading FactCrimes\LKP - DimDate.Outputs[Sortie de recherche sans correspondance]" />
+            <path
+              refId="Package\DFT - Loading FactCrimes.Paths[Sortie de recherche sans correspondance2]"
+              endId="Package\DFT - Loading FactCrimes\DER - Error info (Department).Inputs[Entrée de colonne dérivée]"
+              name="Sortie de recherche sans correspondance"
+              startId="Package\DFT - Loading FactCrimes\LKP - DimDepartment.Outputs[Sortie de recherche sans correspondance]" />
+            <path
+              refId="Package\DFT - Loading FactCrimes.Paths[Sortie de source OLE DB]"
+              endId="Package\DFT - Loading FactCrimes\LKP - DimLibelle.Inputs[Entrée de recherche]"
+              name="Sortie de source OLE DB"
+              startId="Package\DFT - Loading FactCrimes\OLE_SRC - ODS Crimes.Outputs[Sortie de source OLE DB]" />
+            <path
+              refId="Package\DFT - Loading FactCrimes.Paths[Unir tout sortie 1]"
+              endId="Package\DFT - Loading FactCrimes\AGG - Grouping.Inputs[Entrée d'agrégation 1]"
+              name="Unir tout sortie 1"
+              startId="Package\DFT - Loading FactCrimes\ALL - Errors.Outputs[Unir tout sortie 1]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL - Empty FactCrimes"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tâche d'exécution de requêtes SQL"
+      DTS:DTSID="{E611A9EE-501C-479D-9CAB-357348C55912}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL - Empty FactCrimes"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{4139BF1A-44C6-40FD-AB68-594B59DCA6B2}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE FactCrimes" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Contrainte]"
+      DTS:CreationName=""
+      DTS:DTSID="{F5A1244F-EB70-4561-B6B5-2FFD99EF7B70}"
+      DTS:From="Package\SQL - Empty FactCrimes"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Contrainte"
+      DTS:To="Package\DFT - Loading FactCrimes" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Cette section CDATA contient des informations sur la disposition du package. Elle comprend des informations telles que les coordonnées (x,y), la largeur et la hauteur.-->
+<!--Si vous modifiez manuellement cette section et commettez une erreur, vous pouvez la supprimer. -->
+<!--Le package pourra toujours se charger normalement, mais les informations de disposition précédente seront perdues et le concepteur réorganisera automatiquement les éléments sur l'aire de conception.-->
+<Objects
+  Version="8">
+  <!--Chaque nœud ci-dessous contiendra des propriétés qui n'affectent pas le comportement d'exécution.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="200,41.6"
+          Id="Package\DFT - Loading FactCrimes"
+          TopLeft="192.857146141481,175.117649514782" />
+        <NodeLayout
+          Size="192.8,41.6"
+          Id="Package\SQL - Empty FactCrimes"
+          TopLeft="195.71428904728,73.4117657354547" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Contrainte]"
+          TopLeft="292.485717594381,115.011765735455">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60.1058837793277"
+              Start="0,0"
+              End="0,52.6058837793277">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.6058837793277" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\DFT - Loading FactCrimes">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="180.8,41.6"
+          Id="Package\DFT - Loading FactCrimes\LKP - DimDepartment"
+          TopLeft="59.285715295344,286.76470990412" />
+        <NodeLayout
+          Size="184.8,41.6"
+          Id="Package\DFT - Loading FactCrimes\OLE_DST - FactCrimes"
+          TopLeft="57.8571438424441,386.176476004215" />
+        <NodeLayout
+          Size="188.8,41.6"
+          Id="Package\DFT - Loading FactCrimes\OLE_SRC - ODS Crimes"
+          TopLeft="52.8571437572947,11.4705883961648" />
+        <NodeLayout
+          Size="186.4,41.6"
+          Id="Package\DFT - Loading FactCrimes\DER - Error info (Date)"
+          TopLeft="296.42857647672,195.764708627879" />
+        <NodeLayout
+          Size="220,41.6"
+          Id="Package\DFT - Loading FactCrimes\DER - Error info (Department)"
+          TopLeft="301.428576549705,286.815130082912" />
+        <NodeLayout
+          Size="194.4,41.6"
+          Id="Package\DFT - Loading FactCrimes\DER - Error info (Libellé)"
+          TopLeft="295.000005060313,97.9831946715234" />
+        <NodeLayout
+          Size="147.2,41.6"
+          Id="Package\DFT - Loading FactCrimes\LKP - DimDate"
+          TopLeft="76.4285727301423,195.000002734801" />
+        <NodeLayout
+          Size="154.4,41.6"
+          Id="Package\DFT - Loading FactCrimes\LKP - DimLibelle"
+          TopLeft="72.8571440978927,97.1176484208619" />
+        <NodeLayout
+          Size="218.4,41.6"
+          Id="Package\DFT - Loading FactCrimes\OLE_DST - Functional_rejects"
+          TopLeft="889.729682457391,194.330965782046" />
+        <EdgeLayout
+          Id="Package\DFT - Loading FactCrimes.Paths[Sortie de source OLE DB]"
+          TopLeft="148.657143927594,53.0705883961648">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,44.0470600246971"
+              Start="0,0"
+              End="0,36.5470600246971">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.5470600246971" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT - Loading FactCrimes.Paths[Sortie de recherche sans correspondance2]"
+          TopLeft="240.085715295344,307.589919993516">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="61.3428612543606,0"
+              Start="0,0"
+              End="53.8428612543606,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="53.8428612543606,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-64.5805810915697,5,183.0040234375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT - Loading FactCrimes.Paths[Sortie de recherche sans correspondance1]"
+          TopLeft="223.628572730142,216.18235568134">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="72.8000037465775,0"
+              Start="0,0"
+              End="65.3000037465775,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="65.3000037465775,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-58.8520098454613,5,183.0040234375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT - Loading FactCrimes.Paths[Sortie de recherche sans correspondance]"
+          TopLeft="227.257144097893,118.350421546193">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="67.7428609624201,0"
+              Start="0,0"
+              End="60.2428609624201,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="60.2428609624201,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-61.3805812375399,5,183.0040234375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT - Loading FactCrimes.Paths[Sortie de recherche avec correspondance2]"
+          TopLeft="149.971429568894,328.36470990412">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,57.8117661000948"
+              Start="0,0"
+              End="0,50.3117661000948">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,50.3117661000948" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-91.67701171875,19.3511955500474,183.3540234375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT - Loading FactCrimes.Paths[Sortie de recherche avec correspondance1]"
+          TopLeft="149.857144012743,236.600002734801">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,50.1647071693184"
+              Start="0,0"
+              End="0,42.6647071693184">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,42.6647071693184" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-91.67701171875,15.5276660846592,183.3540234375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT - Loading FactCrimes.Paths[Sortie de recherche avec correspondance]"
+          TopLeft="150.042858414017,138.717648420862">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,56.2823543139395"
+              Start="0,0"
+              End="0,48.7823543139395">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,48.7823543139395" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-91.67701171875,18.5864896569698,183.3540234375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="134.4,41.6"
+          Id="Package\DFT - Loading FactCrimes\ALL - Errors"
+          TopLeft="522.175824175824,195.516483516484" />
+        <EdgeLayout
+          Id="Package\DFT - Loading FactCrimes.Paths[Sortie de colonne dérivée]"
+          TopLeft="411.428576549705,286.815130082912">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="177.94724762612,-49.6986465664287"
+              Start="0,0"
+              End="177.94724762612,-42.1986465664287">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-20.8493232832144" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-20.8493232832144"
+                    Point2="0,-24.8493232832144"
+                    Point3="4,-24.8493232832144" />
+                  <mssgle:LineSegment
+                    End="173.94724762612,-24.8493232832144" />
+                  <mssgle:CubicBezierSegment
+                    Point1="173.94724762612,-24.8493232832144"
+                    Point2="177.94724762612,-24.8493232832144"
+                    Point3="177.94724762612,-28.8493232832144" />
+                  <mssgle:LineSegment
+                    End="177.94724762612,-42.1986465664287" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT - Loading FactCrimes.Paths[Sortie de colonne dérivée1]"
+          TopLeft="392.200005060313,139.583194671523">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="197.175819115512,55.9332888449602"
+              Start="0,0"
+              End="197.175819115512,48.4332888449602">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.9666444224801" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,23.9666444224801"
+                    Point2="0,27.9666444224801"
+                    Point3="4,27.9666444224801" />
+                  <mssgle:LineSegment
+                    End="193.175819115512,27.9666444224801" />
+                  <mssgle:CubicBezierSegment
+                    Point1="193.175819115512,27.9666444224801"
+                    Point2="197.175819115512,27.9666444224801"
+                    Point3="197.175819115512,31.9666444224801" />
+                  <mssgle:LineSegment
+                    End="197.175819115512,48.4332888449602" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT - Loading FactCrimes.Paths[Sortie de colonne dérivée2]"
+          TopLeft="482.82857647672,216.440596072181">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="39.3472476991043,0"
+              Start="0,0"
+              End="31.8472476991043,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="31.8472476991043,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="152.8,41.6"
+          Id="Package\DFT - Loading FactCrimes\AGG - Grouping"
+          TopLeft="704.615384615385,194.615384615385" />
+        <EdgeLayout
+          Id="Package\DFT - Loading FactCrimes.Paths[Unir tout sortie 1]"
+          TopLeft="656.575824175824,215.865934065934">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="48.0395604395603,0"
+              Start="0,0"
+              End="40.5395604395603,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="40.5395604395603,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT - Loading FactCrimes.Paths[Sortie d'agrégation 1]"
+          TopLeft="857.415384615385,215.273175198715">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="32.3142978420067,0"
+              Start="0,0"
+              End="24.8142978420067,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="24.8142978420067,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT - Loading FactCrimes\LKP - DimDepartment">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DimDepartment]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT - Loading FactCrimes\OLE_DST - FactCrimes">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT - Loading FactCrimes\OLE_SRC - ODS Crimes">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT - Loading FactCrimes\LKP - DimDate">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DimDate]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT - Loading FactCrimes\LKP - DimLibelle">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DimLibelle]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT - Loading FactCrimes\OLE_DST - Functional_rejects">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

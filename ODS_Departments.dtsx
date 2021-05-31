@@ -1,0 +1,778 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/26/2021 3:34:52 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="LAPTOP-KAT"
+  DTS:CreatorName="LAPTOP-KAT\janet"
+  DTS:DTSID="{4F52BF95-C71A-4279-B707-DDDFB46F6E44}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.150"
+  DTS:LocaleID="1036"
+  DTS:ObjectName="ODS_Departments"
+  DTS:PackageType="5"
+  DTS:VersionBuild="8"
+  DTS:VersionGUID="{29ABB9E6-3072-4CEB-8B4E-B2CA4B66DBEB}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[localhost.ODS_Project]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{F453C93D-E4BE-4D88-AD87-D590D5EA08E3}"
+      DTS:ObjectName="localhost.ODS_Project">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=ODS_Project;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DFT - Load into ODS Departments"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tâche de flux de données"
+      DTS:DTSID="{FCDFFF06-48C5-41B7-B795-CB2E40F1165F}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DFT - Load into ODS Departments"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DFT - Load into ODS Departments\DCNV - Resizing fields"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Conversion de données;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;0"
+              description="Conversion de données"
+              name="DCNV - Resizing fields"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DFT - Load into ODS Departments\DCNV - Resizing fields.Inputs[Entrée de conversion de données]"
+                  name="Entrée de conversion de données">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT - Load into ODS Departments\DCNV - Resizing fields.Inputs[Entrée de conversion de données].Columns[Code_Postal]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Code_Postal"
+                      lineageId="Package\DFT - Load into ODS Departments\OLE_SRC - STA Departments.Outputs[Sortie de source OLE DB].Columns[Code_Postal]" />
+                    <inputColumn
+                      refId="Package\DFT - Load into ODS Departments\DCNV - Resizing fields.Inputs[Entrée de conversion de données].Columns[Département]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Département"
+                      lineageId="Package\DFT - Load into ODS Departments\OLE_SRC - STA Departments.Outputs[Sortie de source OLE DB].Columns[Département]" />
+                    <inputColumn
+                      refId="Package\DFT - Load into ODS Departments\DCNV - Resizing fields.Inputs[Entrée de conversion de données].Columns[Région]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Région"
+                      lineageId="Package\DFT - Load into ODS Departments\OLE_SRC - STA Departments.Outputs[Sortie de source OLE DB].Columns[Région]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - Load into ODS Departments\DCNV - Resizing fields.Outputs[Sortie de conversion de données]"
+                  exclusionGroup="1"
+                  name="Sortie de conversion de données"
+                  synchronousInputId="Package\DFT - Load into ODS Departments\DCNV - Resizing fields.Inputs[Entrée de conversion de données]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Load into ODS Departments\DCNV - Resizing fields.Outputs[Sortie de conversion de données].Columns[Code_Postal_5]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="5"
+                      lineageId="Package\DFT - Load into ODS Departments\DCNV - Resizing fields.Outputs[Sortie de conversion de données].Columns[Code_Postal_5]"
+                      name="Code_Postal_5"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie la colonne d'entrée utilisée comme source de données pour la conversion."
+                          name="SourceInputColumnLineageID">#{Package\DFT - Load into ODS Departments\OLE_SRC - STA Departments.Outputs[Sortie de source OLE DB].Columns[Code_Postal]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - Load into ODS Departments\DCNV - Resizing fields.Outputs[Sortie de conversion de données].Columns[Département_50]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\DFT - Load into ODS Departments\DCNV - Resizing fields.Outputs[Sortie de conversion de données].Columns[Département_50]"
+                      name="Département_50"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie la colonne d'entrée utilisée comme source de données pour la conversion."
+                          name="SourceInputColumnLineageID">#{Package\DFT - Load into ODS Departments\OLE_SRC - STA Departments.Outputs[Sortie de source OLE DB].Columns[Département]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - Load into ODS Departments\DCNV - Resizing fields.Outputs[Sortie de conversion de données].Columns[Région_50]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\DFT - Load into ODS Departments\DCNV - Resizing fields.Outputs[Sortie de conversion de données].Columns[Région_50]"
+                      name="Région_50"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie la colonne d'entrée utilisée comme source de données pour la conversion."
+                          name="SourceInputColumnLineageID">#{Package\DFT - Load into ODS Departments\OLE_SRC - STA Departments.Outputs[Sortie de source OLE DB].Columns[Région]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT - Load into ODS Departments\DCNV - Resizing fields.Outputs[Sortie d'erreur de conversion de données]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de conversion de données"
+                  synchronousInputId="Package\DFT - Load into ODS Departments\DCNV - Resizing fields.Inputs[Entrée de conversion de données]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Load into ODS Departments\DCNV - Resizing fields.Outputs[Sortie d'erreur de conversion de données].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Load into ODS Departments\DCNV - Resizing fields.Outputs[Sortie d'erreur de conversion de données].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - Load into ODS Departments\DCNV - Resizing fields.Outputs[Sortie d'erreur de conversion de données].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Load into ODS Departments\DCNV - Resizing fields.Outputs[Sortie d'erreur de conversion de données].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - Load into ODS Departments\DER - Formatting Code Postal"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Colonne dérivée;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;0"
+              description="Crée de nouvelles valeurs de colonne en appliquant des expressions aux colonnes d'entrée de transformation. Créez de nouvelles colonnes ou remplacez celles qui existent déjà. Par exemple, concaténez les valeurs de la colonne 'prénom' et de la colonne 'nom' pour créer une colonne 'nom complet'."
+              name="DER - Formatting Code Postal"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DFT - Load into ODS Departments\DER - Formatting Code Postal.Inputs[Entrée de colonne dérivée]"
+                  description="Entrée de la transformation de colonnes dérivées"
+                  name="Entrée de colonne dérivée">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT - Load into ODS Departments\DER - Formatting Code Postal.Inputs[Entrée de colonne dérivée].Columns[Code_Postal]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Code_Postal"
+                      errorOrTruncationOperation="Calcul"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DFT - Load into ODS Departments\OLE_SRC - STA Departments.Outputs[Sortie de source OLE DB].Columns[Code_Postal]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression de colonne dérivée"
+                          name="Expression">[RIGHT]("00" + #{Package\DFT - Load into ODS Departments\OLE_SRC - STA Departments.Outputs[Sortie de source OLE DB].Columns[Code_Postal]},2)</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression claire de colonne dérivée"
+                          expressionType="Notify"
+                          name="FriendlyExpression">RIGHT("00" + Code_Postal,2)</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - Load into ODS Departments\DER - Formatting Code Postal.Outputs[Sortie de colonne dérivée]"
+                  description="Sortie par défaut de la transformation de colonnes dérivées"
+                  exclusionGroup="1"
+                  name="Sortie de colonne dérivée"
+                  synchronousInputId="Package\DFT - Load into ODS Departments\DER - Formatting Code Postal.Inputs[Entrée de colonne dérivée]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT - Load into ODS Departments\DER - Formatting Code Postal.Outputs[Sortie d'erreur de colonne dérivée]"
+                  description="Sortie d'erreur de la transformation de colonnes dérivées"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de colonne dérivée"
+                  synchronousInputId="Package\DFT - Load into ODS Departments\DER - Formatting Code Postal.Inputs[Entrée de colonne dérivée]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Load into ODS Departments\DER - Formatting Code Postal.Outputs[Sortie d'erreur de colonne dérivée].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Load into ODS Departments\DER - Formatting Code Postal.Outputs[Sortie d'erreur de colonne dérivée].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - Load into ODS Departments\DER - Formatting Code Postal.Outputs[Sortie d'erreur de colonne dérivée].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Load into ODS Departments\DER - Formatting Code Postal.Outputs[Sortie d'erreur de colonne dérivée].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - Load into ODS Departments\OLE_DST - ODS Departments"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destination OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;4"
+              description="Destination OLE DB"
+              name="OLE_DST - ODS Departments"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowset">[Departments]</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données caractères."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le mode utilisé pour accéder à la base de données."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les valeurs fournies pour les colonnes d'identité seront copiées à la destination. Si la valeur est définie à False, les valeurs des colonnes d'identité seront générées automatiquement à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les colonnes contenant la valeur NULL auront cette valeur NULL copiée à la destination. Si la valeur est définie à False, les colonnes contenant la valeur NULL auront leurs valeurs par défaut insérées à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie les options à utiliser avec le chargement rapide.  Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie quand les validations sont émises pendant l'insertion des données.  Une valeur égale à 0 spécifie qu'une validation sera émise à la fin de l'insertion des données.  Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT - Load into ODS Departments\OLE_DST - ODS Departments.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[localhost.ODS_Project]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost.ODS_Project]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT - Load into ODS Departments\OLE_DST - ODS Departments.Inputs[Entrée de destination OLE DB]"
+                  errorOrTruncationOperation="Insérer"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrée de destination OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT - Load into ODS Departments\OLE_DST - ODS Departments.Inputs[Entrée de destination OLE DB].Columns[Code_Postal_5]"
+                      cachedDataType="wstr"
+                      cachedLength="5"
+                      cachedName="Code_Postal_5"
+                      externalMetadataColumnId="Package\DFT - Load into ODS Departments\OLE_DST - ODS Departments.Inputs[Entrée de destination OLE DB].ExternalColumns[Code_Postal]"
+                      lineageId="Package\DFT - Load into ODS Departments\DCNV - Resizing fields.Outputs[Sortie de conversion de données].Columns[Code_Postal_5]" />
+                    <inputColumn
+                      refId="Package\DFT - Load into ODS Departments\OLE_DST - ODS Departments.Inputs[Entrée de destination OLE DB].Columns[Département_50]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Département_50"
+                      externalMetadataColumnId="Package\DFT - Load into ODS Departments\OLE_DST - ODS Departments.Inputs[Entrée de destination OLE DB].ExternalColumns[Département]"
+                      lineageId="Package\DFT - Load into ODS Departments\DCNV - Resizing fields.Outputs[Sortie de conversion de données].Columns[Département_50]" />
+                    <inputColumn
+                      refId="Package\DFT - Load into ODS Departments\OLE_DST - ODS Departments.Inputs[Entrée de destination OLE DB].Columns[Région_50]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Région_50"
+                      externalMetadataColumnId="Package\DFT - Load into ODS Departments\OLE_DST - ODS Departments.Inputs[Entrée de destination OLE DB].ExternalColumns[Région]"
+                      lineageId="Package\DFT - Load into ODS Departments\DCNV - Resizing fields.Outputs[Sortie de conversion de données].Columns[Région_50]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load into ODS Departments\OLE_DST - ODS Departments.Inputs[Entrée de destination OLE DB].ExternalColumns[Code_Postal]"
+                      dataType="wstr"
+                      length="5"
+                      name="Code_Postal" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load into ODS Departments\OLE_DST - ODS Departments.Inputs[Entrée de destination OLE DB].ExternalColumns[Département]"
+                      dataType="wstr"
+                      length="50"
+                      name="Département" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load into ODS Departments\OLE_DST - ODS Departments.Inputs[Entrée de destination OLE DB].ExternalColumns[Région]"
+                      dataType="wstr"
+                      length="50"
+                      name="Région" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - Load into ODS Departments\OLE_DST - ODS Departments.Outputs[Sortie d'erreur de destination OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de destination OLE DB"
+                  synchronousInputId="Package\DFT - Load into ODS Departments\OLE_DST - ODS Departments.Inputs[Entrée de destination OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Load into ODS Departments\OLE_DST - ODS Departments.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Load into ODS Departments\OLE_DST - ODS Departments.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - Load into ODS Departments\OLE_DST - ODS Departments.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Load into ODS Departments\OLE_DST - ODS Departments.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - Load into ODS Departments\OLE_SRC - STA Departments"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Source OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;7"
+              description="Source OLE DB"
+              name="OLE_SRC - STA Departments"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowset">[dbo].[Departments]</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="Variable contenant la commande SQL à exécuter."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données caractères."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le mode utilisé pour accéder à la base de données."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="Mappages entre les paramètres de la commande SQL et les variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT - Load into ODS Departments\OLE_SRC - STA Departments.Connections[OleDbConnection]"
+                  connectionManagerID="{5713C75A-BDBE-43DE-8270-20855F4DC46D}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[STA_Project]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DFT - Load into ODS Departments\OLE_SRC - STA Departments.Outputs[Sortie de source OLE DB]"
+                  name="Sortie de source OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Load into ODS Departments\OLE_SRC - STA Departments.Outputs[Sortie de source OLE DB].Columns[Code_Postal]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load into ODS Departments\OLE_SRC - STA Departments.Outputs[Sortie de source OLE DB].ExternalColumns[Code_Postal]"
+                      length="50"
+                      lineageId="Package\DFT - Load into ODS Departments\OLE_SRC - STA Departments.Outputs[Sortie de source OLE DB].Columns[Code_Postal]"
+                      name="Code_Postal"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load into ODS Departments\OLE_SRC - STA Departments.Outputs[Sortie de source OLE DB].Columns[Département]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load into ODS Departments\OLE_SRC - STA Departments.Outputs[Sortie de source OLE DB].ExternalColumns[Département]"
+                      length="50"
+                      lineageId="Package\DFT - Load into ODS Departments\OLE_SRC - STA Departments.Outputs[Sortie de source OLE DB].Columns[Département]"
+                      name="Département"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load into ODS Departments\OLE_SRC - STA Departments.Outputs[Sortie de source OLE DB].Columns[Région]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load into ODS Departments\OLE_SRC - STA Departments.Outputs[Sortie de source OLE DB].ExternalColumns[Région]"
+                      length="50"
+                      lineageId="Package\DFT - Load into ODS Departments\OLE_SRC - STA Departments.Outputs[Sortie de source OLE DB].Columns[Région]"
+                      name="Région"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load into ODS Departments\OLE_SRC - STA Departments.Outputs[Sortie de source OLE DB].ExternalColumns[Code_Postal]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Code_Postal" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load into ODS Departments\OLE_SRC - STA Departments.Outputs[Sortie de source OLE DB].ExternalColumns[Département]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Département" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load into ODS Departments\OLE_SRC - STA Departments.Outputs[Sortie de source OLE DB].ExternalColumns[Indicatif_Téléphonique]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Indicatif_Téléphonique" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load into ODS Departments\OLE_SRC - STA Departments.Outputs[Sortie de source OLE DB].ExternalColumns[Région]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Région" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load into ODS Departments\OLE_SRC - STA Departments.Outputs[Sortie de source OLE DB].ExternalColumns[Zone_Vacances]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Zone_Vacances" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DFT - Load into ODS Departments\OLE_SRC - STA Departments.Outputs[Sortie d'erreur de source OLE DB]"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de source OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Load into ODS Departments\OLE_SRC - STA Departments.Outputs[Sortie d'erreur de source OLE DB].Columns[Code_Postal]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\DFT - Load into ODS Departments\OLE_SRC - STA Departments.Outputs[Sortie d'erreur de source OLE DB].Columns[Code_Postal]"
+                      name="Code_Postal" />
+                    <outputColumn
+                      refId="Package\DFT - Load into ODS Departments\OLE_SRC - STA Departments.Outputs[Sortie d'erreur de source OLE DB].Columns[Département]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\DFT - Load into ODS Departments\OLE_SRC - STA Departments.Outputs[Sortie d'erreur de source OLE DB].Columns[Département]"
+                      name="Département" />
+                    <outputColumn
+                      refId="Package\DFT - Load into ODS Departments\OLE_SRC - STA Departments.Outputs[Sortie d'erreur de source OLE DB].Columns[Région]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\DFT - Load into ODS Departments\OLE_SRC - STA Departments.Outputs[Sortie d'erreur de source OLE DB].Columns[Région]"
+                      name="Région" />
+                    <outputColumn
+                      refId="Package\DFT - Load into ODS Departments\OLE_SRC - STA Departments.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Load into ODS Departments\OLE_SRC - STA Departments.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - Load into ODS Departments\OLE_SRC - STA Departments.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Load into ODS Departments\OLE_SRC - STA Departments.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DFT - Load into ODS Departments.Paths[Sortie de colonne dérivée]"
+              endId="Package\DFT - Load into ODS Departments\DCNV - Resizing fields.Inputs[Entrée de conversion de données]"
+              name="Sortie de colonne dérivée"
+              startId="Package\DFT - Load into ODS Departments\DER - Formatting Code Postal.Outputs[Sortie de colonne dérivée]" />
+            <path
+              refId="Package\DFT - Load into ODS Departments.Paths[Sortie de conversion de données]"
+              endId="Package\DFT - Load into ODS Departments\OLE_DST - ODS Departments.Inputs[Entrée de destination OLE DB]"
+              name="Sortie de conversion de données"
+              startId="Package\DFT - Load into ODS Departments\DCNV - Resizing fields.Outputs[Sortie de conversion de données]" />
+            <path
+              refId="Package\DFT - Load into ODS Departments.Paths[Sortie de source OLE DB]"
+              endId="Package\DFT - Load into ODS Departments\DER - Formatting Code Postal.Inputs[Entrée de colonne dérivée]"
+              name="Sortie de source OLE DB"
+              startId="Package\DFT - Load into ODS Departments\OLE_SRC - STA Departments.Outputs[Sortie de source OLE DB]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL - Empty ODS Departments"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tâche d'exécution de requêtes SQL"
+      DTS:DTSID="{516ECE97-0347-433B-9A4B-BA714FC267CB}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL - Empty ODS Departments"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{F453C93D-E4BE-4D88-AD87-D590D5EA08E3}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE Departments" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Contrainte]"
+      DTS:CreationName=""
+      DTS:DTSID="{D48B6E39-39D6-4505-B8BD-42CD4A27A668}"
+      DTS:From="Package\SQL - Empty ODS Departments"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Contrainte"
+      DTS:To="Package\DFT - Load into ODS Departments" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Cette section CDATA contient des informations sur la disposition du package. Elle comprend des informations telles que les coordonnées (x,y), la largeur et la hauteur.-->
+<!--Si vous modifiez manuellement cette section et commettez une erreur, vous pouvez la supprimer. -->
+<!--Le package pourra toujours se charger normalement, mais les informations de disposition précédente seront perdues et le concepteur réorganisera automatiquement les éléments sur l'aire de conception.-->
+<Objects
+  Version="8">
+  <!--Chaque nœud ci-dessous contiendra des propriétés qui n'affectent pas le comportement d'exécution.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="240,41.6"
+          Id="Package\DFT - Load into ODS Departments"
+          TopLeft="164.285717083483,151.411766829375" />
+        <NodeLayout
+          Size="225.6,41.6"
+          Id="Package\SQL - Empty ODS Departments"
+          TopLeft="179.285717338932,57.3529419808239" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Contrainte]"
+          TopLeft="288.185717211208,98.9529419808239">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,52.4588248485513"
+              Start="0,0"
+              End="0,44.9588248485513">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,44.9588248485513" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\DFT - Load into ODS Departments">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="217.6,41.6"
+          Id="Package\DFT - Load into ODS Departments\OLE_DST - ODS Departments"
+          TopLeft="128.571430760987,280.647062759499" />
+        <NodeLayout
+          Size="182.4,41.6"
+          Id="Package\DFT - Load into ODS Departments\DCNV - Resizing fields"
+          TopLeft="142.142859563536,194.235296841724" />
+        <NodeLayout
+          Size="215.2,41.6"
+          Id="Package\DFT - Load into ODS Departments\OLE_SRC - STA Departments"
+          TopLeft="123.571430675837,19.1176473269413" />
+        <EdgeLayout
+          Id="Package\DFT - Load into ODS Departments.Paths[Sortie de conversion de données]"
+          TopLeft="235.357145162262,235.835296841724">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,44.8117659177749"
+              Start="0,0"
+              End="0,37.3117659177749">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,37.3117659177749" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="218.4,41.6"
+          Id="Package\DFT - Load into ODS Departments\DER - Formatting Code Postal"
+          TopLeft="122.142859222938,113.176472175493" />
+        <EdgeLayout
+          Id="Package\DFT - Load into ODS Departments.Paths[Sortie de source OLE DB]"
+          TopLeft="231.257144949387,60.7176473269413">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,52.4588248485512"
+              Start="0,0"
+              End="0,44.9588248485512">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,44.9588248485512" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT - Load into ODS Departments.Paths[Sortie de colonne dérivée]"
+          TopLeft="232.342859393237,154.776472175493">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,39.4588246662314"
+              Start="0,0"
+              End="0,31.9588246662314">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.9588246662314" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT - Load into ODS Departments\OLE_DST - ODS Departments">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT - Load into ODS Departments\OLE_SRC - STA Departments">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
